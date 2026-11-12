@@ -1,0 +1,92 @@
+id: "mining_agate"
+name: "<gradient:#FF5555:#FFAA00><bold>Agate Crystal Vein</bold></gradient>"
+category: "MINING"
+
+hitbox:
+  width: 1.4
+  height: 2.0
+  hologram_offset_y: 2.3
+
+charges:
+  min: 10
+  max: 16
+
+base_gather_time_seconds: 3.0
+inactivity_reset_seconds: 180
+cooldown_seconds: 45
+
+# Sistem Leveling & XP
+exp: 35.0
+required_level: 1
+
+tool_requirements:
+  enabled: true
+  allow_any_tool: false
+  allowed_tools:
+    - type: "MMOITEMS"
+      mmo_type: "PICKAXE"
+      mmo_id: "*" # '*' allows all pickaxes under PICKAXE MMOType
+    - type: "VANILLA"
+      material: "DIAMOND_PICKAXE"
+    - type: "VANILLA"
+      material: "NETHERITE_PICKAXE"
+  durability_damage_per_gather: 1
+
+effects:
+  particle: "BLOCK_CRACK"
+  particle_block: "REDSTONE_BLOCK"
+  particle_count: 5
+  # Opsi kustom kecepatan partikel & interval (jika dihapus, mengikuti default config.yml)
+  particle_speed: 0.05
+  particle_interval_ticks: 4
+  swing_interval_ticks: 6
+  sound_tick: "BLOCK_STONE_HIT"
+  sound_tick_pitch: 1.2
+  sound_tick_volume: 0.35
+  sound_tick_interval_ticks: 6
+  sound_complete: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  sound_complete_pitch: 1.5
+  sound_complete_volume: 0.8
+
+drop_table:
+  use-luck: true
+  use-double-drop: true
+  bonus-luck-percent: 0.0
+  items:
+    - type: mmoitems
+      mmo-type: MINING_MATERIAL
+      id: CELESTIAL_AGATE
+      base: 670
+      amount: 1
+      broadcast: "&6{player} <#e6f7fa>discovered Celestial Agate while mining!"
+    - type: mmoitems
+      mmo-type: MINING_MATERIAL
+      id: IMPERIAL_AGATE
+      base: 275
+      amount: 1
+    - type: mmoitems
+      mmo-type: MINING_MATERIAL
+      id: PREMIUM_AGATE
+      base: 50
+      amount: 1
+    - type: vanilla
+      material: RAW_IRON
+      base: 15
+      amount: 2
+    # Fallback
+    - type: vanilla
+      material: COBBLESTONE
+      amount: 1
+
+hologram_format:
+  ready:
+    - "{name}"
+    - "&7Remaining: {charges_color}{charges}&7/&a{max_charges} &8[{charges_bar}&8]"
+    - "&eLeft or Right-Click to mine"
+  gathering:
+    - "{name}"
+    - "&7Remaining: {charges_color}{charges}&7/&a{max_charges}"
+    - "&fMining: &e{percent}% &8[{progress_bar}&8]"
+  cooldown:
+    - "&8[ Depleted ]"
+    - "<gray>Recovering in: <red>{cooldown}s</red>"

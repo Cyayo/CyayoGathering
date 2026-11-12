@@ -1,0 +1,230 @@
+# ========================================================
+# CYAYO GATHERING - CONFIGURATION
+# ========================================================
+
+# Pengaturan Penyimpanan Database
+# Pilihan type: "SQLITE" atau "MYSQL"
+database:
+  type: "SQLITE"
+  sqlite:
+    file: "data/gathering.db"
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "cyayogathering"
+    username: "root"
+    password: "password"
+    pool:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+settings:
+  # Tick interval pengecekan gathering loop (1 = per 50ms sangat halus & responsif)
+  gathering_tick_rate: 1
+
+  # Toleransi jarak maksimal player dari pusat node sebelum dibatalkan (dalam blok)
+  max_gather_distance: 2.8
+
+  # Batalkan gathering jika player menerima damage (combat interrupt)
+  cancel_on_damage: true
+
+  # Apakah player otomatis melanjutkan gathering jika masih ada sisa charge?
+  auto_continue_gathering: true
+
+  # Apakah item langsung masuk ke inventory player tanpa drop ke tanah? (true/false)
+  direct_to_inventory: false
+
+  # Durasi delay sebelum player bisa mengambil item drop virtual (milidetik)
+  drop_pickup_delay_millis: 600
+
+  # Radius pengambilan item drop virtual (dalam blok)
+  drop_pickup_radius: 2.5
+
+  # Durasi item virtual drop hilang jika tidak diambil (detik)
+  drop_despawn_seconds: 60
+
+  # Ukuran default Interaction hitbox
+  default_interaction_height: 1.8
+  default_interaction_width: 1.2
+  default_hologram_y_offset: 2.3
+
+# ========================================================
+# PENGATURAN EFEK GATHERING (ANIMASI, PARTIKEL & SUARA)
+# ========================================================
+# Pengaturan interval kecepatan animasi tangan, partikel, dan suara saat player sedang gathering.
+# (Catatan Minecraft tick: 20 ticks = 1 detik, 10 ticks = 0.5 detik, 5 ticks = 0.25 detik)
+gathering_effects:
+  # Pengaturan animasi ayunan tangan (swing arm) pemain saat gathering
+  animation:
+    swing_enabled: true
+    # Interval ayunan tangan dalam tick (default: 6 ticks = mengayun ~3.3x per detik)
+    # Semakin kecil angkanya, ayunan semakin cepat; semakin besar angkanya, ayunan semakin lambat
+    swing_interval_ticks: 6
+
+  # Pengaturan partikel saat proses gathering berlangsung
+  particle:
+    enabled: true
+    # Interval partikel muncul dalam tick (default: 4 ticks = partikel muncul 5x per detik)
+    interval_ticks: 4
+    # Kecepatan hamburan / gerak partikel (speed/extra)
+    speed: 0.05
+    # Jumlah partikel default per spawn jika tidak disetel di file node
+    count: 5
+    # Radius sebar partikel (offset X, Y, Z dari titik tengah node)
+    offset_x: 0.3
+    offset_y: 0.3
+    offset_z: 0.3
+
+  # Pengaturan suara ketukan (sound tick) saat gathering berlangsung
+  sound:
+    enabled: true
+    # Interval suara berbunyi dalam tick (default: 6 ticks = ~3.3x per detik)
+    # Semakin kecil angkanya suara semakin sering berbunyi; semakin besar angkanya suara semakin jarang
+    interval_ticks: 6
+    # Volume default suara ketukan (0.0 - 1.0)
+    volume: 0.35
+
+# Pengaturan Hologram Node (Display Text & FancyHolograms)
+hologram:
+  # Provider hologram yang digunakan:
+  # - AUTO: Gunakan FancyHolograms jika plugin terpasang, jika tidak gunakan TextDisplay
+  # - FANCYHOLOGRAMS: Paksa gunakan FancyHolograms
+  # - DISPLAY_TEXT: Paksa gunakan Minecraft native TextDisplay
+  provider: "AUTO"
+
+  # Billboard: Rotasi text display
+  # Options:
+  # - "CENTER": Selalu berputar menghadap mata pemain
+  # - "FIXED": Diam / tidak berputar (menghadap ke satu arah tetap)
+  # - "VERTICAL": Hanya berputar secara vertikal (yaw)
+  # - "HORIZONTAL": Hanya berputar secara horizontal (pitch)
+  billboard: "CENTER"
+
+  # Apakah teks dapat terlihat menembus blok atau hitbox? (true/false)
+  see_through: false
+
+  # Efek bayangan pada teks agar lebih mudah dibaca (true/false)
+  text_shadow: true
+
+  # Perataan teks: CENTER, LEFT, RIGHT
+  alignment: "CENTER"
+
+  # Warna latar belakang teks (background):
+  # - "DEFAULT": Kotak abu-abu transparan standar Minecraft
+  # - "NONE": Transparan penuh (tanpa kotak background)
+  # - "#RRGGBB": Warna hex kustom (contoh: "#000000" untuk hitam)
+  background_color: "DEFAULT"
+
+  # Opasitas background (0 = transparan total, 255 = pekat pekat)
+  # Hanya berlaku jika background_color menggunakan kode hex
+  background_alpha: 64
+
+  # Multiplier jarak pandang teks (default 1.0)
+  view_range: 1.0
+
+# ========================================================
+# REWARD SHOWCASE (Item Display di atas Hologram)
+# ========================================================
+# Menampilkan item yang didapatkan player melayang di atas hologram untuk sesaat,
+# sehingga player lain yang menonton bisa melihat hadiah yang didapat.
+reward_showcase:
+  # Aktifkan fitur showcase item display? (true/false)
+  enabled: true
+
+  # Durasi item tampil melayang di atas hologram (detik)
+  duration_seconds: 2.0
+
+  # Ketinggian item display di atas hologram (blok)
+  offset_y: 0.6
+
+  # Skala ukuran item display (1.0 = ukuran normal, 0.75 = sedikit lebih proporsional)
+  scale: 0.75
+
+  # Billboard: Rotasi item display
+  # - "CENTER": Selalu berputar menghadap mata semua penonton di sekitar
+  # - "FIXED": Diam / tidak berputar
+  # - "VERTICAL": Hanya berputar secara vertikal (yaw)
+  billboard: "CENTER"
+
+  # Tampilan model item:
+  # - "FIXED": Tampil datar menghadap mata (seperti icon GUI/frame)
+  # - "GROUND": Tampil 3D seperti item jatuh
+  # - "HEAD": Tampil ukuran helm/topi
+  item_transform: "FIXED"
+
+  # Animasi melayang perlahan naik ke atas secara halus
+  float_animation: true
+
+  # Partikel saat item showcase muncul (contoh: HAPPY_VILLAGER, CRIT, WAX_OFF, NONE)
+  particle: "HAPPY_VILLAGER"
+  particle_count: 5
+  particle_speed: 0.05
+
+# ========================================================
+# PENGATURAN GATHERING LUCK (SISTEM MULTIPLIER MANDIRI)
+# ========================================================
+# Formula: Effective Multiplier = (1 + PlayerLuck / 100) * (1 + NodeBonusLuck / 100)
+#          Effective Bound      = max(1, round(Base / Effective Multiplier))
+# Sistem ini mendukung penimbunan luck hingga ratusan/ribuan di fase endgame tanpa merusak drop table.
+gathering_luck:
+  # Apakah atribut vanilla Minecraft (Attribute.GENERIC_LUCK) ikut ditambahkan ke Gathering Luck?
+  # Jika false, hanya stat murni GATHERING_LUCK dari MMOItems yang dihitung.
+  include_vanilla_luck: false
+
+# Pengaturan warna dinamis untuk status Charges (sisa kuota node)
+charges_format:
+  # Batas persentase untuk tingkatan status charges:
+  # - Full        : charges == max_charges (100%)
+  # - Tidak Full  : charges < max_charges s/d batas threshold_high (default: >= 75%)
+  # - Di bawah 75%: < threshold_high s/d batas threshold_low (default: >= 25%)
+  # - Di bawah 25%: < threshold_low (default: < 25%, kritis)
+  threshold_high: 75
+  threshold_low: 25
+
+  # Warna saat charges penuh 100% (charges == max_charges)
+  color_full: "&a"
+
+  # Warna saat tidak penuh (di bawah 100% tapi masih >= 75%)
+  color_not_full: "&e"
+
+  # Warna saat sisa kuota di bawah 75% (< 75% s/d 25%)
+  color_below_75: "&6"
+
+  # Warna saat sisa kuota di bawah 25% (< 25%, kritis)
+  color_below_25: "&c"
+
+  # Otomatis menambahkan warna dinamis langsung ke placeholder {charges} tanpa perlu {charges_color}
+  # Jika true: {charges} otomatis berwarna dinamis (contoh: &a12 atau &c3)
+  # Jika false: {charges} tetap angka polos, gunakan {charges_color}{charges} atau {charges_colored}
+  auto_color_charges_placeholder: false
+
+# Pengaturan visual progress bar pada hologram
+progress_bar:
+  symbol_filled: "■"
+  symbol_empty: "□"
+  total_bars: 10
+  color_filled: "&a"
+  color_empty: "&7"
+
+# Pengaturan visual charges bar pada hologram ({charges_bar})
+charges_bar:
+  # Apakah warna simbol terisi (filled) ingin mengikuti warna dinamis dari charges_format di atas? (true/false)
+  # - true : Bar akan berganti warna otomatis (Full: &a, Tidak full: &e, <75%: &6, <25%: &c)
+  # - false: Bar tetap statis menggunakan color_filled di bawah ini
+  dynamic_color: true
+  color_filled: "&a"
+  color_empty: "&7"
+  symbol_filled: "■"
+  symbol_empty: "□"
+  total_bars: 8
+
+# Efek ketika player tidak mendapatkan drop (tidak ada item base 1 di drop table & roll gagal)
+no_drop_effect:
+  sound: "ENTITY_CHICKEN_EGG" # Suara pop
+  sound_pitch: 1.2
+  sound_volume: 1.0
+  particle: "POOF" # Partikel menghilang/puff (fallback: SMOKE)
+  particle_count: 8

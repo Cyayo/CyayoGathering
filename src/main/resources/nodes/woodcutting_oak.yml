@@ -1,0 +1,81 @@
+id: "woodcutting_oak"
+name: "<gradient:#55FF55:#00AA00><bold>Ancient Oak Tree</bold></gradient>"
+category: "WOODCUTTING"
+
+hitbox:
+  width: 1.6
+  height: 2.5
+  hologram_offset_y: 2.8
+
+charges:
+  min: 8
+  max: 12
+
+base_gather_time_seconds: 2.5
+inactivity_reset_seconds: 120
+cooldown_seconds: 30
+
+exp: 25.0
+required_level: 1
+
+tool_requirements:
+  enabled: true
+  allowed_tools:
+    - type: "VANILLA"
+      material: "IRON_AXE"
+    - type: "VANILLA"
+      material: "DIAMOND_AXE"
+    - type: "VANILLA"
+      material: "NETHERITE_AXE"
+    - type: "MMOITEMS"
+      mmo_type: "AXE"
+      mmo_id: "*" # '*' allows all axes under AXE MMOType
+  durability_damage_per_gather: 1
+
+effects:
+  particle: "BLOCK_CRACK"
+  particle_block: "OAK_LOG"
+  particle_count: 8
+  particle_speed: 0.05
+  particle_interval_ticks: 4
+  swing_interval_ticks: 6
+  sound_tick: "ITEM_AXE_STRIP"
+  sound_tick_pitch: 1.0
+  sound_tick_volume: 0.35
+  sound_tick_interval_ticks: 6
+  sound_complete: "BLOCK_WOOD_BREAK"
+  sound_complete_pitch: 1.2
+  sound_complete_volume: 0.8
+
+drop_table:
+  use-luck: true
+  use-double-drop: true
+  bonus-luck-percent: 0.0
+  items:
+    - type: mmoitems
+      mmo-type: MATERIAL
+      id: ANCIENT_BARK
+      base: 80
+      amount: 1
+      broadcast: "&e{player} &7discovered &aAncient Bark &7from an ancient tree!"
+    - type: vanilla
+      material: APPLE
+      base: 25
+      amount: 1
+    # Fallback
+    - type: vanilla
+      material: OAK_LOG
+      amount: 2
+
+hologram_format:
+  ready:
+    - "{name}"
+    - "&7Capacity: {charges_color}{charges}&7/&a{max_charges}"
+    - "&eUse an Axe to chop"
+  gathering:
+    - "{name}"
+    - "&7Woodcutter: &b{gatherer}"
+    - "&fProgress: &a{percent}% &8[{progress_bar}&8]"
+  cooldown:
+    - "&8[ Regrowing ]"
+    - "<gray>Available in: <yellow>{cooldown}s</yellow>"

@@ -1,0 +1,75 @@
+id: "fishing_mystic"
+name: "<gradient:#00AAFF:#0055FF><bold>Mystic Water Pool</bold></gradient>"
+category: "FISHING"
+
+hitbox:
+  width: 2.0
+  height: 1.0
+  hologram_offset_y: 2.0
+
+charges:
+  min: 5
+  max: 8
+
+base_gather_time_seconds: 4.0
+inactivity_reset_seconds: 240
+cooldown_seconds: 60
+
+exp: 40.0
+required_level: 1
+
+tool_requirements:
+  enabled: true
+  allowed_tools:
+    - type: "VANILLA"
+      material: "FISHING_ROD"
+    - type: "MMOITEMS"
+      mmo_type: "TOOL"
+      mmo_id: "*" # '*' allows all tools under TOOL MMOType
+  durability_damage_per_gather: 1
+
+effects:
+  particle: "SPLASH"
+  particle_count: 15
+  particle_speed: 0.08
+  particle_interval_ticks: 4
+  swing_interval_ticks: 10
+  sound_tick: "ENTITY_FISHING_BOBBER_SPLASH"
+  sound_tick_pitch: 1.0
+  sound_tick_volume: 0.35
+  sound_tick_interval_ticks: 8
+  sound_complete: "ENTITY_PLAYER_SPLASH_HIGH_SPEED"
+  sound_complete_pitch: 1.4
+  sound_complete_volume: 0.8
+
+drop_table:
+  use-luck: true
+  use-double-drop: true
+  bonus-luck-percent: 0.0
+  items:
+    - type: mmoitems
+      mmo-type: MATERIAL
+      id: MYSTIC_PEARL
+      base: 100
+      amount: 1
+      broadcast: "&b{player} &7fished up a rare &bMystic Pearl&7!"
+    - type: vanilla
+      material: SALMON
+      base: 30
+      amount: 1
+    # Fallback
+    - type: vanilla
+      material: COD
+      amount: 1
+
+hologram_format:
+  ready:
+    - "{name}"
+    - "&3Fish Pool: {charges_color}{charges}&7/&3{max_charges}"
+    - "&bClick to fish!"
+  gathering:
+    - "{name}"
+    - "&bWaiting for a bite: &e{percent}% &8[{progress_bar}&8]"
+  cooldown:
+    - "&8[ Fish Depleted ]"
+    - "<gray>Respawning in: <aqua>{cooldown}s</aqua>"

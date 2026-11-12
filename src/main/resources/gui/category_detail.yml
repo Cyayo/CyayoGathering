@@ -1,0 +1,90 @@
+# ========================================================
+# CYAYO GATHERING - CATEGORY LEVEL ROAD (MULTI-PAGE)
+# ========================================================
+
+title: "<gradient:#FFAA00:#FF5555><bold>{category_name}</bold></gradient> &8- &7Hal. &f{page}&8/&7{max_page}"
+rows: 4 # 36 slot (27 slot Level Road + 9 slot Baris Navigasi)
+
+sound_open: "UI_BUTTON_CLICK:0.8:1.2"
+sound_page: "UI_BUTTON_CLICK:0.8:1.0"
+sound_back: "UI_BUTTON_CLICK:0.8:0.8"
+
+# ========================================================
+# TATA LETAK & URUTAN SLOT LEVEL (LEVEL ROAD LAYOUT)
+# ========================================================
+# Format inline: [0, 1, 2, ...] atau range string seperti ["0-26"].
+# Jumlah slot dalam list ini otomatis menentukan jumlah level per halaman.
+slots: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+
+# ========================================================
+# PENGATURAN STATUS & TAMPILAN GLASS TIAP LEVEL
+# ========================================================
+# Glass Hijau = Level yang sudah tercapai/selesai
+# Glass Kuning = Level yang sedang berprogres saat ini
+# Glass Merah = Level yang belum tercapai (terkunci)
+# *Catatan: Jika level tersebut memiliki Milestone di levels.yml,
+#  icon kaca akan digantikan oleh icon milestone tersebut.
+items:
+  completed:
+    material: "LIME_STAINED_GLASS_PANE"
+    name: "<color:#55FF55>✔ Level {level}</color> &8(Selesai)"
+    lore:
+      - "&7Status: <color:#55FF55>Lengkap</color>"
+      - "&7Total XP Level: &f{req_xp} XP"
+      - ""
+      - "&fHadiah yang telah didapat:"
+      - "{reward_lore}"
+
+  current:
+    material: "YELLOW_STAINED_GLASS_PANE"
+    name: "<color:#FFFF55>▶ Level {level}</color> &8(Sedang Berjalan)"
+    lore:
+      - "&7Status: <color:#FFFF55>Dalam Proses</color>"
+      - "&7Progres XP: &b{current_xp} &7/ &3{req_xp} &8({percent}%)"
+      - "&8[{progress_bar}&8]"
+      - "&7Sisa Kebutuhan: &f{remaining_xp} XP lagi"
+      - ""
+      - "&fHadiah saat mencapai level ini:"
+      - "{reward_lore}"
+
+  locked:
+    material: "RED_STAINED_GLASS_PANE"
+    name: "<color:#FF5555>✖ Level {level}</color> &8(Terkunci)"
+    lore:
+      - "&7Status: <color:#FF5555>Belum Tercapai</color>"
+      - "&7Kebutuhan XP: &7{req_xp} XP"
+      - ""
+      - "&fHadiah saat terbuka:"
+      - "{reward_lore}"
+
+# ========================================================
+# NAVIGASI BARIS KE-4 (Slot 27 s/d 35)
+# ========================================================
+navigation:
+  filler:
+    enabled: true
+    material: "BLACK_STAINED_GLASS_PANE"
+    custom_model_data: 0
+    name: " "
+    slots: ["0-35"]
+
+  previous_page:
+    slot: 29
+    material: "ARROW"
+    name: "&e« Halaman Sebelumnya"
+    lore:
+      - "&7Klik untuk melihat halaman {prev_page}."
+
+  back_button:
+    slot: 31
+    material: "BARRIER"
+    name: "<color:#FF5555>« Kembali ke Profil Utama</color>"
+    lore:
+      - "&7Klik untuk kembali ke ringkasan kategori."
+
+  next_page:
+    slot: 33
+    material: "ARROW"
+    name: "&eHalaman Berikutnya »"
+    lore:
+      - "&7Klik untuk melihat halaman {next_page}."

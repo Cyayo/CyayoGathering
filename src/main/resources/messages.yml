@@ -1,0 +1,63 @@
+# ========================================================
+# PENGATURAN PESAN (MESSAGES)
+# ========================================================
+# CATATAN:
+# Jika suatu pesan atau prefix diset menjadi 'none' atau "none",
+# maka sistem TIDAK AKAN MENGIRIMKAN PESAN APAPUN (otomatis dimatikan/disable).
+# ========================================================
+
+prefix: "<gradient:#00FFAA:#00A8FF><bold>GATHERING</bold></gradient> <dark_gray>»</dark_gray> "
+
+messages:
+  no_permission: "<red>You do not have permission to use this command!"
+  node_locked: "<red>This node is currently being gathered by <yellow>{player}</yellow>!"
+  invalid_tool: "<red>You need an appropriate tool to gather from this node!"
+  node_cooldown: "<red>This node is depleted! Please wait <yellow>{time}s</yellow>."
+  too_far: "<red>You are too far away from this gathering node!"
+  already_gathering: "<red>You are already gathering from another node!"
+  gather_cancelled_distance: "<red>Gathering cancelled because you moved too far away!"
+  gather_cancelled_damage: "<red>Gathering interrupted because you took damage!"
+  gather_cancelled_action: "<red>Gathering cancelled due to other actions!"
+  gather_success: "<green>Successfully gathered <white>{item_name}</white>!"
+  inventory_full_drop: "<yellow>Your inventory is full! Item dropped onto the ground nearby."
+  node_depleted: "<gold>Node <yellow>{node_name}</yellow> is exhausted and has entered cooldown."
+  level_too_low: "<color:#FF5555>Kamu membutuhkan {category} Level {req_level} untuk memanen {node_name}!</color>"
+
+admin:
+  node_created: "<green>Successfully created node type <yellow>{type}</yellow> at your location! ID: <aqua>{id}</aqua>"
+  node_moved: "<green>Node <aqua>{id}</aqua> has been moved to your current location!"
+  node_removed: "<green>Node <aqua>{id}</aqua> has been removed successfully."
+  node_not_found: "<red>No node found nearby or invalid ID specified."
+  node_reset: "<green>Node <aqua>{id}</aqua> has been reset to full charges."
+  wand_given: "<green>Admin Gathering Wand has been added to your inventory."
+  wand_info: "<gold>Node Info <aqua>{id}</aqua> <gray>(Type: <yellow>{type}</yellow>, Charges: <green>{charges}/{max_charges}</green>, Status: <white>{status}</white>)</gray>"
+  teleported: "<green>Teleported to node <aqua>{id}</aqua>."
+  holograms_purged: "<green>Successfully purged <yellow>{count}</yellow> orphan holograms!"
+  reload_success: "<green>All configuration files and active nodes have been reloaded!"
+  player_not_found: "<red>Player '<yellow>{player}</yellow>' has never played on this server!"
+  stats_set: "<green>Successfully set <yellow>{player}</yellow>'s <aqua>{target}</aqua> stats to <white>{amount}</white>."
+  stats_added: "<green>Successfully added <white>{amount}</white> to <yellow>{player}</yellow>'s <aqua>{target}</aqua> stats. (New: <white>{new_amount}</white>)"
+  stats_removed: "<green>Successfully removed <white>{amount}</white> from <yellow>{player}</yellow>'s <aqua>{target}</aqua> stats. (New: <white>{new_amount}</white>)"
+  stats_reset: "<green>Successfully reset <aqua>{target}</aqua> stats for <yellow>{player}</yellow>."
+  stats_header: "<gradient:#00FFAA:#00A8FF><bold>=== Gathering Stats for {player} ===</bold></gradient>"
+  stats_entry: "<gray>• <aqua>{name}</aqua>: <white>{amount}</white>"
+  level_set: "<green>Berhasil mengatur level <yellow>{player}</yellow> pada kategori <aqua>{category}</aqua> ke <white>Level {level}</white>."
+  xp_added: "<green>Berhasil menambahkan <white>{amount} XP</white> kategori <aqua>{category}</aqua> ke <yellow>{player}</yellow>."
+  invalid_number: "<red>Nilai angka tidak valid!"
+  invalid_category: "<red>Kategori '<yellow>{category}</yellow>' tidak ditemukan!"
+  luck_get: "<gray>Gathering Luck untuk <yellow>{player}</yellow>: <gold>+{amount}</gold> <gray>(Base: <yellow>+{base}</yellow>, Bonus: <green>+{bonus}</green>)</gray>"
+  luck_set: "<green>Berhasil mengatur Gathering Luck bonus <yellow>{player}</yellow> ke <gold>+{amount}</gold>."
+  luck_added: "<green>Berhasil menambahkan <gold>+{amount}</gold> Gathering Luck bonus ke <yellow>{player}</yellow>. (Total Bonus: <gold>+{new_amount}</gold>)"
+  luck_removed: "<green>Berhasil mengurangi <gold>-{amount}</gold> Gathering Luck bonus dari <yellow>{player}</yellow>. (Total Bonus: <gold>+{new_amount}</gold>)"
+  luck_reset: "<green>Berhasil mereset Gathering Luck bonus untuk <yellow>{player}</yellow>."
+  double_gather_get: "<gray>Double Gather Chance untuk <yellow>{player}</yellow>: <yellow>{amount}%</yellow> <gray>(Base: <yellow>{base}%</yellow>, Bonus: <green>+{bonus}%</green>)</gray>"
+  double_gather_set: "<green>Berhasil mengatur Double Gather bonus <yellow>{player}</yellow> ke <yellow>{amount}%</yellow>."
+  double_gather_added: "<green>Berhasil menambahkan <yellow>+{amount}%</yellow> Double Gather bonus ke <yellow>{player}</yellow>. (Total Bonus: <yellow>{new_amount}%</yellow>)"
+  double_gather_removed: "<green>Berhasil mengurangi <yellow>-{amount}%</yellow> Double Gather bonus dari <yellow>{player}</yellow>. (Total Bonus: <yellow>{new_amount}%</yellow>)"
+  double_gather_reset: "<green>Berhasil mereset Double Gather bonus untuk <yellow>{player}</yellow>."
+  speed_get: "<gray>Gathering Speed untuk <yellow>{player}</yellow>: <green>+{amount}%</green> <gray>(Base: <yellow>+{base}%</yellow>, Bonus: <green>+{bonus}%</green>)</gray>"
+  speed_set: "<green>Berhasil mengatur Gathering Speed bonus <yellow>{player}</yellow> ke <green>+{amount}%</green>."
+  speed_added: "<green>Berhasil menambahkan <green>+{amount}%</green> Gathering Speed bonus ke <yellow>{player}</yellow>. (Total Bonus: <green>+{new_amount}%</green>)"
+  speed_removed: "<green>Berhasil mengurangi <green>-{amount}%</green> Gathering Speed bonus dari <yellow>{player}</yellow>. (Total Bonus: <green>+{new_amount}%</green>)"
+  speed_reset: "<green>Berhasil mereset Gathering Speed bonus untuk <yellow>{player}</yellow>."
+

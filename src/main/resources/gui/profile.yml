@@ -1,0 +1,102 @@
+# ========================================================
+# CYAYO GATHERING - MAIN PROFILE MENU
+# ========================================================
+
+title: "<gradient:#FFAA00:#FF5555><bold>Profil Gathering</bold></gradient> &8- &f{player}"
+rows: 3 # 27 slot
+
+sound_open: "UI_BUTTON_CLICK:0.8:1.0"
+
+# Teks pengganti placeholder {xp} dan {req_xp} saat kategori sudah mencapai level maksimal
+# (Bisa diubah menjadi "MAKS", "&aMAX", "---", dll.)
+max_xp_text: "MAX"
+
+# Item Pengisi Border / Background
+# Mendukung 'slots: [0, 1, 2, ...]' atau range string '["0-26"]' (isi [] jika tidak ingin filler).
+# Bisa juga menambahkan section 'filler_items:' jika ingin lebih dari 1 tipe item filler.
+filler:
+  enabled: true
+  material: "GRAY_STAINED_GLASS_PANE"
+  custom_model_data: 0
+  name: " "
+  slots: ["0-26"]
+
+# Tombol Kepala Pemain (Ringkasan Karakter)
+profile_head:
+  slot: 4 # Baris 1 Tengah
+  name: "<gradient:#FFD700:#FFA500><bold>PROFIL: {player}</bold></gradient>"
+  lore:
+    - "&7Ringkasan seluruh aktivitas gathering kamu."
+    - ""
+    - "&fStatistik Karakter:"
+    - " &7■ Total Harvest: &e{total_gathered} &7kali"
+    - " &7■ Gathering Speed: &a{gathering_speed}"
+    - " &7■ Gathering Luck: &6{gathering_luck}"
+    - " &7■ Double Gather: &e{double_drop}%"
+    - ""
+    - "&8Klik kategori di bawah untuk melihat rincian progres."
+
+# Ikon Tiap Kategori (Dapat diklik untuk membuka tampilan Level Road)
+categories:
+  mining:
+    slot: 10
+    material: "DIAMOND_PICKAXE"
+    name: "<gradient:#FF5555:#FFAA00><bold>MINING</bold></gradient>"
+    lore:
+      - "&7Level: &e{level} &7/ &a{max_level}"
+      - "&7XP: &b{xp} &7/ &3{req_xp} &8({percent}%)"
+      - "&8[{progress_bar}&8]"
+      - ""
+      - "&fStatistik:"
+      - " &7■ Total Ditambang: &f{gathered} &7kali"
+      - ""
+      - "&e▶ Klik untuk membuka Level Road & Milestones!"
+
+  woodcutting:
+    slot: 12
+    material: "DIAMOND_AXE"
+    name: "<gradient:#00B4D8:#0077B6><bold>WOODCUTTING</bold></gradient>"
+    lore:
+      - "&7Level: &e{level} &7/ &a{max_level}"
+      - "&7XP: &b{xp} &7/ &3{req_xp} &8({percent}%)"
+      - "&8[{progress_bar}&8]"
+      - ""
+      - "&fStatistik:"
+      - " &7■ Total Ditebang: &f{gathered} &7kali"
+      - ""
+      - "&e▶ Klik untuk membuka Level Road & Milestones!"
+
+  farming:
+    slot: 14
+    material: "DIAMOND_HOE"
+    name: "<gradient:#52B788:#2D6A4F><bold>FARMING</bold></gradient>"
+    lore:
+      - "&7Level: &e{level} &7/ &a{max_level}"
+      - "&7XP: &b{xp} &7/ &3{req_xp} &8({percent}%)"
+      - "&8[{progress_bar}&8]"
+      - ""
+      - "&fStatistik:"
+      - " &7■ Total Dipanen: &f{gathered} &7kali"
+      - ""
+      - "&e▶ Klik untuk membuka Level Road & Milestones!"
+
+  fishing:
+    slot: 16
+    material: "FISHING_ROD"
+    name: "<gradient:#48CAE4:#023E8A><bold>FISHING</bold></gradient>"
+    lore:
+      - "&7Level: &e{level} &7/ &a{max_level}"
+      - "&7XP: &b{xp} &7/ &3{req_xp} &8({percent}%)"
+      - "&8[{progress_bar}&8]"
+      - ""
+      - "&fStatistik:"
+      - " &7■ Total Dipancing: &f{gathered} &7kali"
+      - ""
+      - "&e▶ Klik untuk membuka Level Road & Milestones!"
+
+progress_bar:
+  length: 10
+  symbol: "■"
+  completed_color: "&a"
+  remaining_color: "&7"
+

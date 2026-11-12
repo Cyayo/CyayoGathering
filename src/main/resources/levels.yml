@@ -1,0 +1,173 @@
+# ========================================================
+# CYAYO GATHERING - LEVELING CONFIGURATION
+# ========================================================
+
+enabled: true
+max_level: 100
+
+# Formula Otomatis Kebutuhan XP Tiap Level:
+# Required XP = round(base_xp * (level ^ curve_multiplier))
+# Contoh: base_xp 100 & multiplier 1.5
+# Level 1->2: 100 XP | Level 5->6: 1,118 XP | Level 10->11: 3,162 XP | Level 25->26: 12,500 XP | Level 50->51: 35,355 XP
+formula:
+  base_xp: 100
+  curve_multiplier: 1.5
+
+# Notifikasi Action Bar saat panen/harvest charge
+action_bar:
+  enabled: true
+  # Tampilkan notifikasi action bar saat pemain sudah mencapai level maksimal?
+  # Secara default false (saat sudah max level, pemain tidak mendapatkan XP lagi dan Action Bar otomatis hilang)
+  show_on_max_level: false
+  # Format teks jika show_on_max_level bernilai true (gunakan 'none' jika tidak ingin menampilkan teks apapun)
+  max_level_format: "none"
+  format: "<color:#55FF55>+{xp} {category} XP</color> &8(&e{current_xp}&7/&a{req_xp}&8) &7[{progress_bar}&7]"
+  progress_bar:
+    length: 10
+    symbol: "■"
+    completed_color: "&a"
+    remaining_color: "&7"
+
+# ========================================================
+# SISTEM HADIAH (REWARDS)
+# ========================================================
+rewards:
+  # Hadiah standar yang dijalankan saat naik level biasa
+  per_level:
+    sound: "ENTITY_PLAYER_LEVELUP:1.0:1.2"
+    title: "<gradient:#FFD700:#FFA500><bold>LEVEL UP!</bold></gradient>"
+    subtitle: "&7Kemampuan &e{category}&7 naik ke &aLevel {level}&7!"
+    # chat_message mendukung teks tunggal maupun list baris
+    chat_message:
+      - "&8[&6CyayoGathering&8] &7Selamat! Kemampuan &e{category}&7 kamu naik ke &aLevel {level}&7!"
+      - "&7Hadiah level: <color:#55FF55>+50 Coins</color>"
+    display_lore:
+      - "&7■ <color:#55FF55>+50 Coins</color>"
+    commands:
+      - "eco give {player} 50"
+
+  # Hadiah Khusus di Level Tertentu (TIDAK DOUBLE dengan per_level)
+  # Level yang didaftarkan di sini HANYA akan mengeksekusi hadiah khusus ini
+  # dan otomatis MELEWATKAN (skip) hadiah 'per_level' agar hadiah tidak dobel.
+  #
+  # Pengaturan Field:
+  # - icon: (Opsional) Jika dihilangkan atau diset DEFAULT/NONE, otomatis menggunakan glass status yang sama dengan level lainnya (Hijau/Kuning/Merah).
+  # - display_name: (Opsional) Nama item di GUI. Jika dihilangkan, otomatis mengikuti format nama level standar.
+  # - display_lore: Lore hadiah yang ditampilkan pada item GUI.
+  # - chat_message: (Opsional) Pesan chat khusus yang dikirimkan ke pemain (mendukung teks tunggal maupun list). Set 'none' jika tidak ingin mengirim pesan.
+  # - broadcast: (Opsional) Pengumuman ke seluruh pemain lain di server (pemain yang naik level tidak akan melihat broadcast ini). Set 'none' jika tidak ingin broadcast.
+  # - commands: Daftar perintah konsol yang dieksekusi sebagai hadiah level ini.
+  #
+  # TIPS: Setiap field notifikasi (title, subtitle, chat_message, broadcast, action_bar, sound) 
+  # jika diset menjadi 'none' atau "none", sistem otomatis TIDAK AKAN MENGIRIM/MEMBUNYIKAN apapun.
+  milestones:
+    mining:
+      5:
+        # icon: "RAW_COPPER" # Hapus/beri pagar '#' jika ingin menggunakan glass yang sama seperti level lainnya
+        display_name: "<gradient:#E07A5F:#F4F1DE><bold>HADIAH LEVEL 5</bold></gradient>"
+        display_lore:
+          - "&6★ &eCopper Key x1"
+          - "&7■ <color:#55FF55>+500 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &6★ <bold>SELAMAT!</bold> Kamu mencapai &eMining Level 5&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &eCopper Key x1 &7dan &a+500 Coins&7!"
+        broadcast: "&6{player} &7telah mencapai &eMining Level 5&7!"
+        commands:
+          - "eco give {player} 500"
+          - "mi give MATERIAL COPPER_KEY {player} 1"
+      10:
+        # icon: "RAW_IRON"
+        display_name: "<gradient:#D3D3D3:#FFFFFF><bold>HADIAH LEVEL 10</bold></gradient>"
+        display_lore:
+          - "&6★ &fIron Pickaxe x1"
+          - "&7■ <color:#55FF55>+1,000 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &6★ <bold>SELAMAT!</bold> Kamu mencapai &eMining Level 10&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &fIron Pickaxe x1 &7dan &a+1,000 Coins&7!"
+        broadcast: "&6{player} &7telah mencapai &eMining Level 10&7!"
+        commands:
+          - "eco give {player} 1000"
+      25:
+        # icon: "DIAMOND"
+        display_name: "<gradient:#00F5D4:#7B2CBF><bold>HADIAH LEVEL 25</bold></gradient>"
+        display_lore:
+          - "&6★ &bCelestial Agate x1"
+          - "&7■ <color:#55FF55>+5,000 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &b★ <bold>LUAR BIASA!</bold> Kamu mencapai &eMining Level 25&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &bCelestial Agate x1 &7dan &a+5,000 Coins&7!"
+        broadcast: "&6{player} &7telah mencapai &eMining Level 25&7!"
+        commands:
+          - "eco give {player} 5000"
+
+    woodcutting:
+      5:
+        display_name: "<gradient:#80ED99:#38A3A5><bold>HADIAH LEVEL 5</bold></gradient>"
+        display_lore:
+          - "&6★ &aWoodcutter Pouch x1"
+          - "&7■ <color:#55FF55>+500 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &a★ <bold>SELAMAT!</bold> Kamu mencapai &aWoodcutting Level 5&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &aWoodcutter Pouch x1 &7dan &a+500 Coins&7!"
+        broadcast: "&a{player} &7telah mencapai &aWoodcutting Level 5&7!"
+        commands:
+          - "eco give {player} 500"
+      10:
+        display_name: "<gradient:#2EC4B6:#E71D36><bold>HADIAH LEVEL 10</bold></gradient>"
+        display_lore:
+          - "&6★ &fIron Axe x1"
+          - "&7■ <color:#55FF55>+1,000 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &a★ <bold>SELAMAT!</bold> Kamu mencapai &aWoodcutting Level 10&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &fIron Axe x1 &7dan &a+1,000 Coins&7!"
+        broadcast: "&a{player} &7telah mencapai &aWoodcutting Level 10&7!"
+        commands:
+          - "eco give {player} 1000"
+
+    farming:
+      5:
+        display_name: "<gradient:#FFE494:#FFB703><bold>HADIAH LEVEL 5</bold></gradient>"
+        display_lore:
+          - "&6★ &eFarmer Fertilizer x5"
+          - "&7■ <color:#55FF55>+500 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &e★ <bold>SELAMAT!</bold> Kamu mencapai &eFarming Level 5&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &eFarmer Fertilizer x5 &7dan &a+500 Coins&7!"
+        broadcast: "&e{player} &7telah mencapai &eFarming Level 5&7!"
+        commands:
+          - "eco give {player} 500"
+      10:
+        display_name: "<gradient:#FB8500:#023047><bold>HADIAH LEVEL 10</bold></gradient>"
+        display_lore:
+          - "&6★ &fIron Hoe x1"
+          - "&7■ <color:#55FF55>+1,000 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &e★ <bold>SELAMAT!</bold> Kamu mencapai &eFarming Level 10&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &fIron Hoe x1 &7dan &a+1,000 Coins&7!"
+        broadcast: "&e{player} &7telah mencapai &eFarming Level 10&7!"
+        commands:
+          - "eco give {player} 1000"
+
+    fishing:
+      5:
+        display_name: "<gradient:#90E0EF:#0077B6><bold>HADIAH LEVEL 5</bold></gradient>"
+        display_lore:
+          - "&6★ &bLure Bait x10"
+          - "&7■ <color:#55FF55>+500 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &b★ <bold>SELAMAT!</bold> Kamu mencapai &bFishing Level 5&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &bLure Bait x10 &7dan &a+500 Coins&7!"
+        broadcast: "&b{player} &7telah mencapai &bFishing Level 5&7!"
+        commands:
+          - "eco give {player} 500"
+      10:
+        display_name: "<gradient:#48CAE4:#03045E><bold>HADIAH LEVEL 10</bold></gradient>"
+        display_lore:
+          - "&6★ &bReinforced Rod x1"
+          - "&7■ <color:#55FF55>+1,000 Coins</color>"
+        chat_message:
+          - "&8[&6CyayoGathering&8] &b★ <bold>SELAMAT!</bold> Kamu mencapai &bFishing Level 10&7!"
+          - "&7Kamu mendapatkan hadiah spesial: &bReinforced Rod x1 &7dan &a+1,000 Coins&7!"
+        broadcast: "&b{player} &7telah mencapai &bFishing Level 10&7!"
+        commands:
+          - "eco give {player} 1000"

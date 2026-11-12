@@ -1,0 +1,25 @@
+name: CyayoGathering
+version: 1.0.0
+main: id.cyayo.gathering.CyayoGathering
+api-version: '1.21'
+author: Cyayo
+description: Flexible gathering node system with FancyHolograms, PacketEvents, and MMOItems
+
+depend: [packetevents]
+softdepend: [FancyHolograms, MMOItems, MythicLib, PlaceholderAPI, CyayoProfiles, SeriaPrefix]
+
+commands:
+  cyayogathering:
+    description: Main command for CyayoGathering
+    aliases: [cgath, gathering]
+
+permissions:
+  cyayogathering.admin:
+    description: Allows full administration of gathering nodes
+    default: op
+  cyayogathering.profile:
+    description: Allows viewing own gathering profile GUI
+    default: op
+  cyayogathering.profile.others:
+    description: Allows viewing other players gathering profile GUI
+    default: op
